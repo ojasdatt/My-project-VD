@@ -277,35 +277,86 @@
             font-size: 18px;
         }
 
-        .guide-grid {
+       .guide-grid {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
+            padding: 20px 0;
         }
 
         .guide-card {
-            width: 180px;
-            padding: 10px;
-            background: #111;
+            width: 500px;
+            background: #0a0a0a;
             border: 3px solid #0ff;
-            border-radius: 6px;
-            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
             cursor: pointer;
-            transition: 0.2s;
-        }       
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 0 6px #0ff4;
+        }
 
         .guide-card img {
             width: 100%;
-            height: 120px;
+            height: 150px;
             object-fit: cover;
-            border-bottom: 2px solid #0ff;
+            border-bottom: 3px solid #0ff;
         }
 
-        .guide-card:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 12px #0ff;
+        .guide-card h3 {
+            margin: 12px 0 6px;
+            font-size: 1.1rem;
+            color: #0ff;
+            text-shadow: 0 0 4px #0ff;
         }
+
+        .guide-card p {
+            font-size: 0.9rem;
+            color: #ccc;
+            padding: 0 10px 12px;
+        }
+
+       .guide-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 18px #0ff;
+        }
+
+        .guide-card { 
+            border: 4px solid #00ffff; 
+            box-shadow: 0 0 10px #00ffff; 
+        }
+
+        .page {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 240px;
+        }   
+
+        #contactForm input {
+            padding: 6px;
+            border: 1px solid #555;
+            background: #111;
+            color: #eee;
+        }
+
+        #contactForm button {
+            padding: 7px;
+            background: #2a6df4;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #contactMessage {
+            margin-top: 8px;
+            font-weight: bold;
+        }   
 
     </style>
 </head>
@@ -594,94 +645,259 @@
            <p>Test your puzzle-solving skills! (hint: The heaviest one is not the lightest color!)</p>
 
             <div id="blockPuzzle">
-                <button class="block1" data-block="red">Red Block</button>
-                <button class="block2" data-block="blue">Blue Block</button>
-                <button class="block3" data-block="yellow">Yellow Block</button>
-                <p id="blockMessage"></p>
-            </div>
+    <button class="block1" data-block="red">Red Block</button>
+    <button class="block2" data-block="blue">Blue Block</button>
+    <button class="block3" data-block="yellow">Yellow Block</button>
+    <p id="blockMessage"></p>
+</div>
         </div>
     </div>
 </div>
 
 <div id="page-guidetog" class="page">
-    <h2 class="retro-title">Choose Your Guide!</h2>
-
+    <h3 class="retro-title">Choose Your Game Guide</h3>
     <div class="guide-grid">
         <div class="guide-card" data-page="minecraft">
-            <img src="images.jpg" width="120px" height="100px" alt="Minecraft guide">
-            <h3>Minecraft</h3>
-            <p>Survival • Building • Exploration</p>
+            <img src="images.jpg" alt="Minecraft Guide">
+            <h5>Minecraft</h5>
+            <p>Crafting table basics</p>
         </div>
-
         <div class="guide-card" data-page="fortnite">
-            <img src="Fortnite.jpg" width="120px" height="100px" alt="Fortnite guide">
-            <h3>Fortnite</h3>
-            <p>Battle Royale • Weapons • Strategy</p>
+            <img src="Fortnite.jpg" alt="Fortnite Guide">
+            <h5>Fortnite</h5>
+            <p>Landing, shields, and building tips</p>
         </div>
-
         <div class="guide-card" data-page="clash">
-            <img src="Dragon.jpg" width="120px" height="100px" alt="Clash Royale guide">
-            <h3>Clash Royale</h3>
-            <p>Decks • Arenas • Elixir Control</p>
+            <img src="Dragon.jpg" alt="Clash Guide">
+            <h5>Clash of Clans</h5>
+            <p>Early upgrades & attack strategy</p>
         </div>
     </div>
-    <div id="page-minecraft" class="page">Minecraft guide content...</div>
-    <div id="page-fortnite" class="page">Fortnite guide content...</div>
-    <div id="page-clash" class="page">Clash Royale guide content...</div>
 </div>
 
-<div id="page-contact" class="page">Contact page</div>
+<!-- MINECRAFT PAGE -->
+
+<div id="page-minecraft" class="page"> 
+    <div class="guide-grid">
+        <div class="guide-card" id="Minecraftcard">
+            <img src="Crafting.webp" width="120px" height="100px">
+
+            <div class="card-body">
+                <h4>The 3x3 Grid</h4>
+                <p>The crafting table allows you to use all the crafting recipes in Minecraft.<br>
+                There are a lot of basic items that you can craft without a crafting table, like blocks for building, tools for mining, and armor for safety (and style!).<br>
+                But whether you’re crafting from your inventory or at a crafting table, 
+                you will always need two things: a crafting recipe, and supplies!</p>
+
+                <h6>How to do it!</h6>
+                <p>Minecraft’s world is full of materials you can combine to craft new items.<br> 
+                You can follow the recipe book or experiment on your own.<br> 
+                To make a crafting table, you need four wooden planks—so your first task is crafting planks themselves.<br>
+
+                Planks come from wood, which you get by punching trees until wood blocks drop. <br>
+                Walking near the dropped blocks automatically collects them into your inventory. <br>
+                While punching works for wood, most other resources require proper tools, like pickaxes for ore or buckets for water.<br>
+
+                Once you have wood, open your inventory to access the crafting grid. <br>
+                Place a wood block into the 2×2 grid to craft four planks. <br>
+                With those planks, you now have everything needed to craft a crafting table.</p>
+
+                <hr>
+
+                <h4>Essential Tools & Their Uses</h4>
+                <p>Tools help you gather resources faster and unlock new materials.  
+                Using the right tool saves time and prevents items from breaking or dropping nothing.</p>
+
+                <h6>What each tool does</h6>
+                <p>
+                • <strong>Pickaxe</strong> – Mines stone, ores, and important blocks like diamonds.<br>
+                • <strong>Axe</strong> – Cuts wood faster and deals strong melee damage.<br>
+                • <strong>Shovel</strong> – Speeds up digging dirt, sand, gravel, and snow.<br>
+                • <strong>Hoe</strong> – Prepares farmland for crops.<br>
+                • <strong>Sword</strong> – Best for fighting mobs and breaking certain blocks like bamboo.<br>
+                </p>
+
+                <h6>How to craft tools</h6>
+                <p>All tools follow the same recipe pattern:  
+                2 sticks for the handle + the material on top (wood, stone, iron, gold, or diamond).<br><br>
+
+                For example, a wooden pickaxe uses:<br>
+                • 3 wooden planks across the top row<br>
+                • 2 sticks in the center column<br><br>
+
+                Upgrading to stone, iron, or diamond makes tools last longer and mine faster.</p>
+
+                <h6>Pro Tip</h6>
+                <p>Never mine diamonds with a wooden or stone pickaxe — they will break and drop nothing.  
+                Always use at least an iron pickaxe.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FORTNITE PAGE -->
+
+<div id="page-fortnite" class="page">
+    <div class="guide-grid">
+
+        <div class="guide-card" id="Fortnitecard">
+            <img src="Fortnite.jpg" width="120px" height="100px">
+
+            <div class="card-body">
+                <h4>Landing & Early Game</h4>
+                <p>Your first decisions in Fortnite decide the pace of the entire match.<br>
+                Landing near loot-rich areas gives you a strong start, but landing slightly outside hotspots lets you gear up safely.<br>
+                Always prioritize shields—surviving the first fight is more important than chasing eliminations.</p>
+
+                <h6>How to do it!</h6>
+                <p>Pick a landing spot with at least 3–4 chests nearby. Glide lower than other players to reach the ground first.<br>
+                Once you land, grab any weapon immediately—even a pistol is better than nothing.<br>
+                After looting, pop shield potions right away. A player with shields almost always wins early trades.</p>
+
+                <h4>Building Basics</h4>
+                <p>Building is Fortnite’s signature mechanic. Even simple builds can save your life.<br>
+                A single wall can block a sniper shot, and a quick ramp gives you height advantage in close fights.</p>
+
+                <h6>How to do it!</h6>
+                <p>Start with the essentials:<br>
+                • Place a wall when you're shot at.<br>
+                • Build a ramp to gain height.<br>
+                • Use a 1×1 tower (wall–ramp–floor) to reset fights or heal safely.<br>
+                As you improve, practice combining edits and builds to outmaneuver opponents.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- CLASH OF CLANS PAGE -->
+
+<div id="page-clash" class="page">
+    <div class="guide-grid">
+
+        <div class="guide-card" id="Clashcard">
+            <img src="Dragon.jpg" width="120px" height="100px">
+
+            <div class="card-body">
+                <h4>Early Progression</h4>
+                <p>Clash of Clans rewards smart upgrades, not rushing. Upgrading your army camps, spell factory, and barracks early gives you stronger attacks and faster training times.<br>
+                A strong offense makes farming resources much easier.</p>
+
+                <h6>How to do it!</h6>
+                <p>Focus on these upgrades first:<br>
+                • Army Camps (more troops = stronger raids)<br>
+                • Barracks & Spell Factory (unlock better strategies)<br>
+                • Clan Castle (join a clan for donated troops)<br>
+                Avoid upgrading your Town Hall too early—stronger enemies will crush you.</p>
+
+                <h4>Basic Attack Strategy</h4>
+                <p>Every good attack starts with funneling. This means clearing buildings on the sides so your main troops go straight into the base instead of walking around it.</p>
+
+                <h6>How to do it!</h6>
+                <p>1. Use a few troops to clear outside buildings on the left and right.<br>
+                2. Deploy your main army in the center so they move into the core.<br>
+                3. Save your heroes and spells for the toughest defenses.<br>
+                4. Drop cleanup troops last to secure extra stars.</p>
+
+                <p>As you level up, experiment with strategies like Giants + Wizards, Dragons, or Hog Riders depending on your Town Hall level.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="page-contact" class="page">
+    <h2>Contact Page(Hook me up with your feedback,questions,or comments!)</h2><br>
+
+    <form id="contactForm">
+        <label>Name:</label>
+        <input type="text" name="name" id="name"><br>
+
+        <label>Age:</label>
+        <input type="text" name="age" id="age"><br>
+
+        <label>Feedback or comments:</label>
+        <input type="text" name="feedback" id="feedback"><br>
+
+        <button type="submit">Submit</button><br>
+
+        <p id="contactMessage"></p>
+
+    </form>
+</div>
+
+</div>
 
 <script>
-    function playSound(id) {
-        const sound = document.getElementById(id);
-        sound.currentTime = 0;
-        sound.play();
-    }
+function playSound(id) {
+    const sound = document.getElementById(id);
+    sound.currentTime = 0;
+    sound.play();
+}
 
-    const pages = document.querySelectorAll(".page");
+const pages = document.querySelectorAll(".page");
 
-    function showPage(name) {
-        pages.forEach(p => {
-            p.style.display = "none";
-            p.classList.remove("show");
-        });
-        const page = document.getElementById("page-" + name);
-        if (!page) {
-            return;
+function showPage(name) {
+    pages.forEach(p => {
+        p.style.display = "none";
+        p.classList.remove("show");
+    });
+    const page = document.getElementById("page-" + name);
+    if (!page) return;
+    page.style.display = "block";
+    setTimeout(() => page.classList.add("show"), 10);
+}
+
+document.querySelectorAll("#navContainer button").forEach(btn => {
+    btn.addEventListener("click", () => showPage(btn.dataset.page));
+});
+
+showPage("guidetog");
+
+const heavyBlock = "blue";
+const message = document.getElementById("blockMessage");
+
+document.querySelectorAll("[data-block]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const chosen = btn.dataset.block;
+        if (chosen === heavyBlock) {
+            message.textContent = "Correct! This block is heavier.";
+        } else if (chosen === "red") {
+            message.textContent = "Red is definitely NOT the heavy block.";
+        } else {
+            message.textContent = "This one feels light. Try another.";
         }
-        page.style.display = "block";
-        setTimeout(() => page.classList.add("show"), 10);
-    }
-
-    document.querySelectorAll("#navContainer button").forEach(btn => {
-        btn.addEventListener("click", () => showPage(btn.dataset.page));
     });
+});
 
-    showPage("home");
-
-    const heavyBlock = "blue";
-    const message = document.getElementById("blockMessage");
-
-    document.querySelectorAll("[data-block]").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const chosen = btn.dataset.block;
-            if (chosen === heavyBlock) {
-                message.textContent = "Correct! This block is heavier.";
-            } else if (chosen === "red") {
-                message.textContent = "Red is definitely NOT the heavy block.";
-            } else {
-                message.textContent = "This one feels light. Try another.";
-            }
-        });
-    });
-    document.querySelectorAll(".guide-card").forEach(card => {
+document.querySelectorAll(".guide-card").forEach(card => {
     card.addEventListener("click", () => {
         showPage(card.dataset.page);
     });
 });
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const age = document.getElementById("age").value.trim();
+    const feedback = document.getElementById("feedback").value.trim();
+    const msg = document.getElementById("contactMessage");
+
+    if (!name || !age || !feedback) {
+        msg.textContent = "Please fill out all fields.";
+        msg.style.color = "red";
+        return;
+    }
+
+    if (isNaN(age)) {
+        msg.textContent = "Age must be a number.";
+        msg.style.color = "red";
+        return;
+    }
+
+    msg.textContent = "Thank you! Your form has been submitted.";
+    msg.style.color = "green";
+});
 </script>
 </html>
-   
-
-
