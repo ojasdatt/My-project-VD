@@ -1,6 +1,8 @@
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaryan's Game Hub</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -9,93 +11,126 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <style>
+        :root {
+            --bg: #0e1016;
+            --surface: #1a1f2e;
+            --surface-soft: #252d41;
+            --line: #3a435a;
+            --text: #f4f7ff;
+            --muted: #b9c0d4;
+            --accent: #3cefff;
+            --accent-2: #ffb454;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background: #111;
-            color: #fff;
+            background: radial-gradient(1200px 600px at 20% 0%, #17223b 0%, var(--bg) 45%, #090b11 100%);
+            color: var(--text);
             font-family: Arial, sans-serif;
+            line-height: 1.5;
         }
 
         h1 {
-            color: #0ff;
-            text-shadow: 0 0 10px #0ff;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(60, 239, 255, 0.75);
             font-family: 'Press Start 2P', cursive;
             font-size: 20px;
+            margin-bottom: 16px;
         }
 
         #navContainer {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
-            padding: 10px;
-            background: #000;
-            border-bottom: 2px solid #444;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(4px);
         }
 
         #navContainer button {
-            padding: 10px 15px;
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            border-radius: 5px;
+            padding: 10px 14px;
+            background: #2a3248;
+            color: var(--text);
+            border: 1px solid #44506c;
+            border-radius: 7px;
             cursor: pointer;
             font-family: 'Press Start 2P', cursive;
             font-size: 10px;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
         }
 
         #navContainer button:hover {
-            background: #555;
+            background: #34405c;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
         }
 
         .page {
             display: none;
-            padding: 20px;
-            background: #222;
-            margin-top: 10px;
-            border-radius: 10px;
+            padding: 24px;
+            background: linear-gradient(180deg, rgba(37, 45, 65, 0.9) 0%, rgba(25, 31, 46, 0.95) 100%);
+            margin-top: 14px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
             opacity: 0;
-            transition: opacity 0.7s ease;
+            transition: opacity 0.5s ease;
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
         }
 
         .page.show {
             opacity: 1;
         }
 
+        #page-home {
+            overflow: visible;
+        }
+
         .funfact {
             display: inline-block;
             position: relative;
             text-align: center;
-            margin: 10px;
+            margin: 14px;
         }
 
         .funfact img {
-            width: 150px;
-            height: 100px;
+            width: 160px;
+            height: 105px;
             transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
-            border: 4px solid white;
+            border: 3px solid #dfe7ff;
+            border-radius: 8px;
             padding: 2px;
+            background: #fff;
         }
 
         .funfact-text {
+            z-index: 20;
             display: none;
             position: absolute;
-            top: 110%;
+            top: 112%;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.85);
+            background: rgba(8, 10, 18, 0.94);
             color: #fff;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #3f4a67;
+            font-size: 11px;
             font-family: 'Press Start 2P', cursive;
-            width: 280px;
+            width: 300px;
             text-align: center;
             white-space: normal;
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.4);
         }
 
         .funfact:hover img {
-            transform: scale(1.2) rotate(5deg);
-            filter: brightness(1.3);
-            box-shadow: 0 0 18px rgba(0, 200, 255, 0.8);
+            transform: scale(1.12) rotate(3deg);
+            filter: brightness(1.2);
+            box-shadow: 0 0 22px rgba(60, 239, 255, 0.65);
         }
 
         .funfact:hover .funfact-text {
@@ -105,121 +140,125 @@
         #card-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
-            justify-content: space-around;
+            gap: 22px;
+            justify-content: center;
         }
 
         .card {
-            flex: 1 1 250px; 
-            max-width: 300px; 
-            background: #333;
-            color: #fff;
-            border: 3px solid #555;
-            border-radius: 10px;
+            flex: 1 1 250px;
+            max-width: 300px;
+            background: linear-gradient(180deg, #313d5c 0%, #232b41 100%);
+            color: #f7f9ff;
+            border: 1px solid #4c5979;
+            border-radius: 12px;
             overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .card .card-body {
+            padding: 16px;
         }
 
         .button-link button {
             width: 100%;
-            padding: 5px;
+            padding: 8px;
             border: none;
-            border-radius: 5px;
-            background-color: #555;
+            border-radius: 6px;
+            background-color: #4a5a80;
             color: #fff;
             font-family: 'Trebuchet MS', sans-serif;
             cursor: pointer;
-            box-shadow: 0 0 20px darkorange;
+            font-weight: 600;
+            box-shadow: 0 0 16px rgba(255, 180, 84, 0.55);
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
         .button-link button:hover {
-            background-color: #777;
+            background-color: #5d6f98;
+            transform: translateY(-1px);
         }
 
         #originCarousel {
-            max-width: 400px;
-            margin: 10px auto;
+            max-width: 420px;
+            margin: 14px auto;
         }
 
         .origin-img {
             border-radius: 15px;
+            border: 2px solid #7a88ab;
         }
 
         .carousel-caption-custom {
             color: #fff;
             margin-top: 10px;
         }
+
         .quote {
-         margin-right: 60px; 
-         display: inline-block;
-         transform: rotate(-5deg);
-         cursor: pointer;
-         transition: 0.2s;
+            margin-right: 24px;
+            margin-bottom: 12px;
+            display: inline-block;
+            transform: rotate(-5deg);
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
         }
 
-       .quote:hover {
-         transform: rotate(-5deg) scale(1.1);
-         color: #00ffae;
+        .quote:hover {
+            transform: rotate(-4deg) scale(1.08);
+            color: #2dffcb;
         }
+
         #blockPuzzle {
-         background: #222;
-         padding: 12px;
-         border-radius: 8px;
-         width: 220px;
-         font-family: 'Press Start 2P', cursive;
+            background: #1d2435;
+            padding: 12px;
+            border-radius: 8px;
+            width: 220px;
+            border: 1px solid #475578;
+            font-family: 'Press Start 2P', cursive;
         }
 
-        .block1 {
-        background: yellow;
-         color: white;
-         border: 2px solid #555;
-         padding: 8px;
-         width: 100%;
-         margin-bottom: 8px;
-         cursor: pointer;
-         transition: 0.15s;
-        }
-
-        .block2 {
-        background: red;
-         color: white;
-         border: 2px solid #555;
-         padding: 8px;
-         width: 100%;
-         margin-bottom: 8px;
-         cursor: pointer;
-         transition: 0.15s;
-        }
-
+        .block1,
+        .block2,
         .block3 {
-        background: blue;
-         color: white;
-         border: 2px solid #555;
-         padding: 8px;
-         width: 100%;
-         margin-bottom: 8px;
-         cursor: pointer;
-         transition: 0.15s;
+            color: #fff;
+            border: 2px solid #2f3852;
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: filter 0.15s ease;
         }
 
-       .block:hover {
-        background: #444;
+        .block1 { background: #e3c427; }
+        .block2 { background: #d74b4b; }
+        .block3 { background: #3c6de8; }
+
+        .block1:hover,
+        .block2:hover,
+        .block3:hover {
+            filter: brightness(0.9);
         }
 
         #blockMessage {
-         margin-top: 10px;
-         color: #0f0;
-         font-size: 10px;
+            margin-top: 10px;
+            color: #8fffb8;
+            font-size: 10px;
         }
+
         .puzzle-steps {
-          max-width: 700px;
-          padding: 20px;
-          background: #1b1b1b;
-          color: #e6e6e6;
-          border: 4px solid #3a3a3a;
-          border-radius: 6px;
-          box-shadow: 0 0 12px rgba(0,0,0,0.6);
-          font-family: "Press Start 2P", monospace; 
-          line-height: 1.7;
+            max-width: 700px;
+            padding: 20px;
+            background: #171d2d;
+            color: #e6e6e6;
+            border: 2px solid #3f4b69;
+            border-radius: 8px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+            font-family: "Press Start 2P", monospace;
+            line-height: 1.7;
         }
 
         #lps-container {
@@ -241,35 +280,36 @@
         }
 
         .puzzle-steps p:first-child {
-         font-size: 1.2rem;
-         margin-bottom: 15px;
-         text-transform: uppercase;
-         letter-spacing: 1px;
-         color: #ffd86b;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ffd86b;
         }
 
         .puzzle-steps p {
-         margin-bottom: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
         .puzzle-steps .dont {
-         display: block;
-         margin-top: 15px;
-         padding: 10px;
-         background: #3a0000;
-         border-left: 5px solid #ff4d4d;
-         color: #ffb3b3;
-         font-size: 0.9rem;
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background: #3a0000;
+            border-left: 5px solid #ff4d4d;
+            color: #ffb3b3;
+            font-size: 0.9rem;
         }
 
         .puzzle-steps .hint {
-         margin-top: 20px;
-         padding: 12px;
-         background: #002b55;
-         border-left: 5px solid #5aaaff;
-         color: #cfe6ff;
-         font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 12px;
+            background: #002b55;
+            border-left: 5px solid #5aaaff;
+            color: #cfe6ff;
+            font-size: 0.9rem;
         }
+
         .retro-title {
             font-family: 'Press Start 2P', cursive;
             text-align: center;
@@ -277,7 +317,7 @@
             font-size: 18px;
         }
 
-       .guide-grid {
+        .guide-grid {
             display: flex;
             justify-content: center;
             gap: 24px;
@@ -287,77 +327,104 @@
 
         .guide-card {
             width: 500px;
-            background: #0a0a0a;
-            border: 3px solid #0ff;
-            border-radius: 10px;
+            background: linear-gradient(180deg, #121827 0%, #090d18 100%);
+            border: 2px solid #22d7ea;
+            border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: 0 0 6px #0ff4;
+            box-shadow: 0 0 10px rgba(34, 215, 234, 0.35);
         }
 
         .guide-card img {
             width: 100%;
-            height: 150px;
+            height: 165px;
             object-fit: cover;
-            border-bottom: 3px solid #0ff;
+            border-bottom: 2px solid #22d7ea;
         }
 
-        .guide-card h3 {
+        .guide-card h3,
+        .guide-card h5 {
             margin: 12px 0 6px;
             font-size: 1.1rem;
-            color: #0ff;
-            text-shadow: 0 0 4px #0ff;
+            color: #8ff7ff;
+            text-shadow: 0 0 4px rgba(143, 247, 255, 0.7);
+            text-align: center;
         }
 
         .guide-card p {
-            font-size: 0.9rem;
-            color: #ccc;
+            font-size: 0.92rem;
+            color: #ccd6ef;
             padding: 0 10px 12px;
+            margin-bottom: 0;
+            text-align: center;
         }
 
-       .guide-card:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 18px #0ff;
+        .guide-card:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 22px rgba(34, 215, 234, 0.7);
         }
 
-        .guide-card { 
-            border: 4px solid #00ffff; 
-            box-shadow: 0 0 10px #00ffff; 
+        #page-contact {
+            text-align: center;
         }
 
-        .page {
-            position: relative;
-            overflow: hidden;
+        #contactFormEmbed {
+            margin: 14px auto 0;
+            width: min(760px, 100%);
+            padding: 12px;
+            border: 2px solid #22d7ea;
+            border-radius: 12px;
+            background: linear-gradient(180deg, #121827 0%, #090d18 100%);
+            box-shadow: 0 0 18px rgba(34, 215, 234, 0.38);
         }
 
-        #contactForm {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            width: 240px;
-        }   
-
-        #contactForm input {
-            padding: 6px;
-            border: 1px solid #555;
-            background: #111;
-            color: #eee;
-        }
-
-        #contactForm button {
-            padding: 7px;
-            background: #2a6df4;
-            color: white;
+        #contactFormEmbed iframe {
+            display: block;
+            width: 100%;
+            height: 520px;
             border: none;
-            cursor: pointer;
+            border-radius: 8px;
+            background: #0f1525;
         }
 
-        #contactMessage {
-            margin-top: 8px;
-            font-weight: bold;
-        }   
+        @media (max-width: 768px) {
+            .page {
+                padding: 16px;
+            }
 
+            .funfact {
+                margin: 10px 0;
+            }
+
+            .funfact-text {
+                width: 240px;
+                font-size: 10px;
+            }
+
+            .quote {
+                margin-right: 0;
+                margin-bottom: 10px;
+                transform: none;
+            }
+
+            .quote:hover {
+                transform: scale(1.04);
+            }
+
+            .guide-card {
+                width: 100%;
+            }
+
+            #contactFormEmbed {
+                padding: 8px;
+                width: 100%;
+            }
+
+            #contactFormEmbed iframe {
+                height: 500px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -532,6 +599,8 @@
     </div>
 </div>
 
+
+
 <div id="page-co" class="page">
 
     <div id="originCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -675,7 +744,13 @@
     </div>
 </div>
 
+
+
+
 <!-- MINECRAFT PAGE -->
+
+
+
 
 <div id="page-minecraft" class="page"> 
     <div class="guide-grid">
@@ -735,7 +810,13 @@
     </div>
 </div>
 
+
+
+
 <!-- FORTNITE PAGE -->
+
+
+
 
 <div id="page-fortnite" class="page">
     <div class="guide-grid">
@@ -770,7 +851,14 @@
     </div>
 </div>
 
+
+
+
 <!-- CLASH OF CLANS PAGE -->
+
+
+
+
 
 <div id="page-clash" class="page">
     <div class="guide-grid">
@@ -808,26 +896,30 @@
 
 <div id="page-contact" class="page">
     <h2>Contact Page(Hook me up with your feedback,questions,or comments!)</h2><br>
-
-    <form id="contactForm">
-        <label>Name:</label>
-        <input type="text" name="name" id="name"><br>
-
-        <label>Age:</label>
-        <input type="text" name="age" id="age"><br>
-
-        <label>Feedback or comments:</label>
-        <input type="text" name="feedback" id="feedback"><br>
-
-        <button type="submit">Submit</button><br>
-
-        <p id="contactMessage"></p>
-
-    </form>
+    <div id="contactFormEmbed">
+        <iframe
+            width="640"
+            height="480"
+            src="https://forms.office.com/r/QS7PZP0s7U?embed=true"
+            frameborder="0"
+            marginwidth="0"
+            marginheight="0"
+            style="border:none; max-width:100%; max-height:100vh; width:100%;"
+            allowfullscreen
+            webkitallowfullscreen
+            mozallowfullscreen
+            msallowfullscreen>
+        </iframe>
+    </div>
 </div>
 
-</div>
 
+
+
+
+
+
+</div>
 <script>
 function playSound(id) {
     const sound = document.getElementById(id);
@@ -852,7 +944,7 @@ document.querySelectorAll("#navContainer button").forEach(btn => {
     btn.addEventListener("click", () => showPage(btn.dataset.page));
 });
 
-showPage("guidetog");
+showPage("home");
 
 const heavyBlock = "blue";
 const message = document.getElementById("blockMessage");
@@ -876,28 +968,33 @@ document.querySelectorAll(".guide-card").forEach(card => {
     });
 });
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    const name = document.getElementById("name").value.trim();
-    const age = document.getElementById("age").value.trim();
-    const feedback = document.getElementById("feedback").value.trim();
-    const msg = document.getElementById("contactMessage");
+        const name = document.getElementById("name").value.trim();
+        const age = document.getElementById("age").value.trim();
+        const feedback = document.getElementById("feedback").value.trim();
+        const msg = document.getElementById("contactMessage");
 
-    if (!name || !age || !feedback) {
-        msg.textContent = "Please fill out all fields.";
-        msg.style.color = "red";
-        return;
-    }
+        if (!name || !age || !feedback) {
+            msg.textContent = "Please fill out all fields.";
+            msg.style.color = "red";
+            return;
+        }
 
-    if (isNaN(age)) {
-        msg.textContent = "Age must be a number.";
-        msg.style.color = "red";
-        return;
-    }
+        if (isNaN(age)) {
+            msg.textContent = "Age must be a number.";
+            msg.style.color = "red";
+            return;
+        }
 
-    msg.textContent = "Thank you! Your form has been submitted.";
-    msg.style.color = "green";
-});
+        msg.textContent = "Thank you! Your form has been submitted.";
+        msg.style.color = "green";
+    });
+}
+
 </script>
+<!--First 1000 lines good website!-->
 </html>
